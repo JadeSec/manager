@@ -17,12 +17,15 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0' # Use a versão adequada do .NET Core para o seu projeto
+          dotnet-version: '5.0'
+
+      - name: Install dotnet-outdated
+        run: dotnet tool install --global dotnet-outdated
 
       - name: Install dependencies
         run: dotnet restore
 
       - name: Run security code analysis
-        run: dotnet security-scan
-        # env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: dotnet outdated --format json --include-transitive --only-advisories
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
