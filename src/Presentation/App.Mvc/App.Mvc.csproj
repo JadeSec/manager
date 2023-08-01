@@ -19,4 +19,8 @@
     <ProjectReference Include="..\..\Infra\CrossCutting\App.Infra.CrossCutting\App.Infra.CrossCutting.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Shared\Partials\" />
+  </ItemGroup>
+
 </Project>
