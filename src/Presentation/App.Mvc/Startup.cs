@@ -1,5 +1,6 @@
 using App.Infra.Bootstrap;
 using App.Infra.Bootstrap.Extensions;
+using App.Infra.CrossCutting.Extensions;
 using App.Mvc.Middlewares;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -26,7 +27,7 @@ namespace App.Mvc
         public Startup(
             IConfiguration configuration)
         {
-            _configuration = configuration;           
+            _configuration = configuration.UpdateFromEnvironment();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
