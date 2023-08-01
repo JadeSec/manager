@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Application\App.Application.Poc\App.Application.Poc.csproj" />
     <ProjectReference Include="..\..\Infra\CrossCutting\App.Infra.CrossCutting\App.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\..\Repositories\App.Repositories\App.Repositories.csproj" />
   </ItemGroup>
 
   <ItemGroup>

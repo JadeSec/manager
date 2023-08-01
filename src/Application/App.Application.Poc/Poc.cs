@@ -1,12 +1,14 @@
 ﻿using App.Application.Poc.Cache;
 using App.Infra.Bootstrap.Attributes;
 using App.Infra.Integration.Redis;
+using App.Repositories;
 
 namespace App.Application.Poc
 {
     [Transient]
     public class Poc
     {
+        readonly PocRepository _pocRep;
         readonly RedisService _redis;
 
         public Poc(RedisService redis)

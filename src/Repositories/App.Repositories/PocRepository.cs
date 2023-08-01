@@ -5,11 +5,11 @@ using App.Infra.Integration.Database.Providers;
 
 namespace App.Repositories
 {
-    public class CustomerRepository : RepositoryService<MySQLProvider, object>
+    public class PocRepository : RepositoryService<MySQLProvider, object>
     {
-        readonly ILogger<CustomerRepository> _logger;
+        readonly ILogger<PocRepository> _logger;
 
-        public CustomerRepository(ILogger<CustomerRepository> logger)
+        public PocRepository(ILogger<PocRepository> logger)
         {
             _logger = logger;
         }

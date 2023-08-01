@@ -14,7 +14,7 @@ namespace App.Infra.Integration.Redis.Models
         ///   "server2:6379"
         /// ]
         /// </summary>
-        public string[] Hosts { get; set; }  
+        public string[] Hosts { get; set; } = new string[] { };
         /// <summary>
         /// Use index database.
         /// </summary>
@@ -27,7 +27,7 @@ namespace App.Infra.Integration.Redis.Models
         /// Note that Redis supports multiple databases (although this is not supported in "cluster");
         /// </summary>
         public string HostConnection
-          => (Database == null) ? string.Join(",", Hosts) : Hosts.ToList().FirstOrDefault();
+          => (Database == null) ? string.Join(",", Hosts) : Hosts?.ToList().FirstOrDefault();
 
         public bool IsCluster
           => (Database == null && Hosts.Count() > 1);

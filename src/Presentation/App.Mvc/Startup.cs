@@ -21,13 +21,13 @@ namespace App.Mvc
 {
     public class Startup
     {
-        private IConfiguration _configuration { get; }
+        private IConfiguration Configuration { get; }
         private Container _container = Ioc.RecoverContainer();
 
         public Startup(
             IConfiguration configuration)
         {
-            _configuration = configuration.UpdateFromEnvironment();
+            Configuration = configuration.UpdateFromEnvironment();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

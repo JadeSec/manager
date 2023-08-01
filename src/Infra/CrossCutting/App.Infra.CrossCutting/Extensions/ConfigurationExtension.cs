@@ -11,8 +11,10 @@ namespace App.Infra.CrossCutting.Extensions
             foreach (var item in configuration.AsEnumerable())
             {
                 string envKey = item.Key.ToUpper().Replace(":", "_");
-
-                configuration[item.Key] = Environment.GetEnvironmentVariable(envKey) ?? configuration[item.Key];               
+                if (envKey != item.Key)
+                {                    
+                    configuration[item.Key] = Environment.GetEnvironmentVariable(envKey) ?? configuration[item.Key];
+                }
             }
 
             return configuration;

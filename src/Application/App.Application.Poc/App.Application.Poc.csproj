@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infra\Integration\App.Infra.Integration.Redis\App.Infra.Integration.Redis.csproj" />
+    <ProjectReference Include="..\..\Repositories\App.Repositories\App.Repositories.csproj" />
   </ItemGroup>
 
 </Project>
