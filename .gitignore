@@ -1,0 +1,8 @@
+
+obj/
+bin/
+.vs/MLPoc/DesignTimeBuild/.dtbcache.v2
+.vs/MLPoc/v16/.suo
+.vs/waygo.activity/DesignTimeBuild/.dtbcache.v2
+.vs/waygo.activity/config/applicationhost.config
+.vs/waygo.activity/v16/.suo

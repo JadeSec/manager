@@ -1,0 +1,51 @@
+﻿@model App.Mvc.ViewComponents.Alert.Models.AlertViewComponentModel
+
+@if (Model.Visible)
+{
+   
+        //Layout simples
+        @if ((int)Model.Layout == 0)
+        {
+            <div class="alert alert-@Model.TypeCssName alert-dismissible" role="alert">
+                <div class="d-flex">
+                    <div>
+                        <h4 class="alert-title">@Model.Title</h4>
+                        <div class="text-muted">@Model.Message</div>
+                    </div>
+                </div>
+                <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+            </div>
+        }
+
+    //Layout sweet
+    @if ((int)Model.Layout == 1)
+    {
+        <script src="~/libs/sweetalert/sweetalert.min.js"></script>
+        <style>
+            .swal-button{
+                background: #000;
+                border: unset !important
+            }
+                .swal-button:not([disabled]):hover {
+                    background-color: #464848;
+                    border: unset !important
+                }
+                .swal-button:focus {
+                    outline: none;
+                    box-shadow: unset !important;
+                }
+            .swal-text{
+                font-size: 20px !important;
+                text-align: center !important;
+            }
+        </style>
+        <script type="text/javascript">
+            swal({
+                title:"@Html.Raw(@Model.Title)",
+                text: "@Html.Raw(@Model.Message)",
+                type: "@Html.Raw(@Model.TypeCssName)",
+                icon: "@Html.Raw(@Model.TypeCssName)"
+            });
+        </script>
+    }
+}

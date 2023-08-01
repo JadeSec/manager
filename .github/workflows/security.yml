@@ -1,0 +1,28 @@
+name: Security Code Analysis
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  security_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0' # Use a versão adequada do .NET Core para o seu projeto
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Run security code analysis
+        run: dotnet security-scan
+        # env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

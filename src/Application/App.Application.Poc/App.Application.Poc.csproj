@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infra\Integration\App.Infra.Integration.Redis\App.Infra.Integration.Redis.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,10 @@
+﻿@model App.Mvc.ViewComponents.Avatar.Cache.AvatarViewComponentCache
+
+<a asp-controller="Account" asp-action="Index" class="nav-link d-flex lh-1 text-reset">
+    <span class="avatar avatar-rounded avatar-sm" style="background-image: url('https://cdn.bldfunds.com/share/avatar/@Model.Avatar')">
+        @if (Model.Notify)
+        {
+            <span class="badge badge-avatar bg-lime badge-notification badge-blink"></span>
+        }
+    </span>   
+</a>
