@@ -5,27 +5,13 @@ on:
     branches:
       - main
       - develop
-
+      
 jobs:
   security_scan:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '5.0'
-
-      - name: Install dotnet-outdated
-        run: dotnet tool install --global dotnet-outdated
-
-      - name: Install dependencies
-        run: dotnet restore
-
-      - name: Run security code analysis
-        run: dotnet outdated --format json --include-transitive --only-advisories
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: SecurityCodeScan
+        uses: security-code-scan/security-code-scan-results-action@v1.3
