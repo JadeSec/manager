@@ -1,8 +1,127 @@
+# .NET build files
+*.obj
+*.exe
+*.dll
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+*.opensdf
+*.unsuccessfulbuild
+ipch/
+Debug/
+Release/
+x64/
+x86/
+AnyCPU/
+build/
 
-obj/
-bin/
-.vs/MLPoc/DesignTimeBuild/.dtbcache.v2
-.vs/MLPoc/v16/.suo
-.vs/waygo.activity/DesignTimeBuild/.dtbcache.v2
-.vs/waygo.activity/config/applicationhost.config
-.vs/waygo.activity/v16/.suo
+# .NET project files
+*.csproj.user
+*.csproj.nuget.g.props
+*.csproj.nuget.g.targets
+
+# Visual Studio files
+.vs/
+
+# ReSharper files
+_ReSharper*/
+*.resharper*
+*.DotSettings.user
+
+# NuGet packages
+packages/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUNIT
+*.VisualState.xml
+TestResult.xml
+
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# DNX
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/Properties/launchSettings.json
+
+# StyleCop
+StyleCopReport.xml
+
+# Files built by Visual Studio
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*~$*
+*$.#*
+$*.#*
+
+# InstallShield output folder
+[Ee]xpress/
+
+# Roslyn cache directories
+*.ide/
+
+# Installshield output folder
+[Ee]xpress/
+
+# Click-Once stuff
+publish/
+*.publish.xml
+*.deploy
+
+# Publish Web Output
+*.[Pp]ublish.xml
+*.azurePubxml
+*.pubxml
+**/Properties/PublishProfiles/
+*.pubxml.user
