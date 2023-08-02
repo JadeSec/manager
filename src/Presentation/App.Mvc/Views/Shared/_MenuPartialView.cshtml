@@ -10,10 +10,9 @@
         </div>
         <div class="navbar-nav flex-row order-md-last">
             <div class="d-none d-md-flex">
-                <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
+                <a href="#" class="nav-link px-0 hide-theme-dark" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable dark mode" data-bs-original-title="Enable dark mode">
                     <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg>
-                </a>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon text-danger icon-filled icon-tada" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path></svg>                </a>
                 <a href="?theme=light" class="nav-link px-0 hide-theme-light" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Enable light mode" data-bs-original-title="Enable light mode">
                     <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path></svg>
@@ -155,36 +154,39 @@
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/package -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-ticket" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 5l0 2"></path><path d="M15 11l0 2"></path><path d="M15 17l0 2"></path><path d="M5 5h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-3a2 2 0 0 0 0 -4v-3a2 2 0 0 1 2 -2"></path></svg>
                             </span>
                             <span class="nav-link-title">
                                 Service Desk
                             </span>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"></path><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path><path d="M17 10h2a2 2 0 0 1 2 2v1"></path><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path><path d="M3 13v-1a2 2 0 0 1 2 -2h2"></path></svg>
-                            </span>
-                            <span class="nav-link-title">
-                                Users
-                            </span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/package -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trophy" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 21l8 0"></path><path d="M12 17l0 4"></path><path d="M7 4l10 0"></path><path d="M17 4v8a5 5 0 0 1 -10 0v-8"></path><path d="M5 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M19 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path></svg>
-                            </span>
-                            <span class="nav-link-title">
-                                Security Champions
-                            </span>
-                        </a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-menu-columns">
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item" href="#">
+                                        My Tickets
+                                    </a>                                  
+                                </div>
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item" href="#">
+                                        Pentesting
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        Code Review
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        Threat Modeling
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        Risk Assessment
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -212,13 +214,7 @@
                                     </a>
                                     <a class="dropdown-item" href="#">
                                         Organizations
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        Threat Modeling
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        Risk Assessment
-                                    </a>
+                                    </a>                                    
                                 </div>
                             </div>
                         </div>
@@ -236,19 +232,36 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <a class="dropdown-item" href="#">
-                                        SAST
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        DAST
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        SCA
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        IAC
-                                    </a>
-                                    <div class="dropend separator">
+                                    <div class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="true">
+                                            Appsec
+                                        </a>
+                                        <div class="dropdown-menu" data-bs-popper="static">
+                                            <a class="dropdown-item" href="#">
+                                                SAST
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                DAST
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                SCA
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                IAC
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="true">
+                                            Cloud Security
+                                        </a>
+                                        <div class="dropdown-menu" data-bs-popper="static">
+                                            <a class="dropdown-item" href="#">
+                                                AWS
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="dropend">
                                         <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="true">
                                             CI/CD
                                         </a>
@@ -276,6 +289,17 @@
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
                                     <a class="dropdown-item" href="#">
+                                        Users
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        Security Champions
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        System Configuration
+                                    </a>
+                                </div>
+                                <div class="dropdown-menu-column">
+                                    <a class="dropdown-item" href="#">
                                         Web API
                                     </a>
                                     <a class="dropdown-item" href="#">
@@ -284,40 +308,21 @@
                                     <a class="dropdown-item" href="#">
                                         Service Workers
                                     </a>
-                                </div>
-                                <div class="dropdown-menu-column">
                                     <a class="dropdown-item" href="#">
-                                        SSO
+                                        SSO (Single Sign-On)
                                     </a>
-                                    <a class="dropdown-item" href="#">
-                                        GitHub
-                                    </a>
+                                    <div class="dropend">
+                                        <a class="dropdown-item dropdown-toggle" href="#sidebar-cards" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="true">
+                                            Version Control
+                                        </a>
+                                        <div class="dropdown-menu" data-bs-popper="static">
+                                            <a href="#" class="dropdown-item">
+                                                GitHub
+                                            </a>
+                                        </div>
+                                    </div>                                    
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path><path d="M15 15l3.35 3.35"></path><path d="M9 15l-3.35 3.35"></path><path d="M5.65 5.65l3.35 3.35"></path><path d="M18.35 5.65l-3.35 3.35"></path></svg>
-                            </span>
-                            <span class="nav-link-title">
-                                Help
-                            </span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="https://github.com/jadesec/manager" target="_blank" rel="noopener">
-                                Source code
-                            </a>
-                            <a class="dropdown-item" href="#" target="_blank" rel="noopener">
-                                Documentation
-                            </a>
-                            <a class="dropdown-item text-pink" href="https://github.com/sponsors/jadesec" target="_blank" rel="noopener">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/heart -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline me-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path></svg>
-                                Sponsor project!
-                            </a>
                         </div>
                     </li>
                 </ul>
