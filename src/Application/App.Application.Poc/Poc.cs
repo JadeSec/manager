@@ -7,8 +7,7 @@ namespace App.Application.Poc
 {
     [Transient]
     public class Poc
-    {
-        readonly PocRepository _pocRep;
+    {    
         readonly RedisService _redis;
 
         public Poc(RedisService redis)

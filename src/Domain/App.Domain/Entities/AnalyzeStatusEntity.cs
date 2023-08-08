@@ -3,17 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Domain.Entities
 {
-    [Table("poc")]
-    public class PocEntity
+    [Table("analyze_status")]
+    public class AnalyzeStatusEntity
     {
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("Poc2")]
-        [Column("poc2_id")]
-        public int Poc2Id { get; set; }
-        public object Poc2 { get; set; }
-
         public string Name { get; set; }
+
+        public string Description { get; set; }
     }
 }

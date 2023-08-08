@@ -1,0 +1,228 @@
+﻿@using App.Domain.Models
+@using App.Domain.Entities
+@model PaginateModel<FindingEntity>
+
+<div class="page-header d-print-none mb-5">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    Findings
+                </h2>
+                <small class="pt-1">Showing 20 of the 34233</small>
+            </div>
+            <!-- Page title actions -->
+            <div class="col-auto ms-auto d-print-none">
+                <a href="#" class="btn btn-primary">
+                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg>
+                    Post a job
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-xl">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="card">
+                <div id="filter" class="card-body">
+                    <form asp-controller="Finding" asp-action="Index" method="get">
+                        <ul class="pagination ">
+                            <li class="page-item page-prev disabled">
+                                <div class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                    <div class="page-item-subtitle">Filter</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text text-white" :class="error.has ? 'bg-danger' : 'bg-success'">
+                                <i class="ti ti-filter fs-3"></i>
+                            </span>
+                            <input name="search" v-model="inputText" autofocus="true" @@input="showOptions" @@keydown.enter="submit" :class="error.has ? 'is-invalid' : 'is-valid'" class="form-control" placeholder="severity:low | cwe:123456 | title:sql injection">
+                        </div>
+                        <div v-if="showColumnOptions" class="options">
+                            <div v-for="column in filteredColumnOptions" :key="column" @@click="selectOption(column)">
+                                {{ column }}:
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row row-cards">
+                <div class="space-y">
+                    @foreach (var finding in Model.Items)
+                    {
+        <div class="card severity">
+            <div class="row g-0">
+                <div class="col-auto">
+                    <div class="card-body">
+                        <input class="form-check-input m-0 align-middle" type="checkbox" aria-label="Select invoice">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card-body ps-0">
+                        <div class="row">
+                            <div class="col">
+                                <div class="list-inline-item severity" data-severity="@finding.Severity.Name.ToLower()">
+                                    <span class="badge text-white">@finding.Severity.Name</span>
+                                </div>
+                                <div class="list-inline-item severity">
+                                    <span class="badge badge-outline text-dark">@finding.Status.Name</span>
+                                </div>
+                                <h3 class="mb-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="@finding.Title">
+                                    <a class="text-dark" href="#">
+                                        @finding.Title
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="mt-3 list-inline mb-0 text-secondary d-sm-block d-none">
+
+                                    <div class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="ID: @finding.Id">
+                                        <i class="ti ti-dna fs-3"></i>
+                                        @finding.Id
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-building-skyscraper fs-3"></i>
+                                        @finding.Project.Organization.Name
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-users-group fs-3"></i>
+                                        @finding.Project.Team.Name
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-folder fs-3"></i>
+                                        @finding.Project.Name
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-shield-search fs-3"></i>
+                                        @finding.Tool.Type.Name/@finding.Tool.Name
+                                    </div>
+
+                                    <div class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="SLA: @finding.Severity.Sla days">
+                                        <i class="ti ti-clock fs-3"></i>
+                                        @finding.Severity.Sla
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-calendar-event fs-3"></i>
+                                        @finding.Created.ToString("D")
+                                    </div>
+                                </div>
+                                <div class="mt-3 list mb-0 text-secondary d-block d-sm-none">
+                                    <div class="list-item">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/building-community -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M8 9l5 5v7h-5v-4m0 4h-5v-7l5 -5m1 1v-6a1 1 0 0 1 1 -1h10a1 1 0 0 1 1 1v17h-8"></path><path d="M13 7l0 .01"></path><path d="M17 7l0 .01"></path><path d="M17 11l0 .01"></path><path d="M17 15l0 .01"></path></svg>
+
+                                    </div>
+                                    <div class="list-item">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/license -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 21h-9a3 3 0 0 1 -3 -3v-1h10v2a2 2 0 0 0 4 0v-14a2 2 0 1 1 2 2h-2m2 -4h-11a3 3 0 0 0 -3 3v11"></path><path d="M9 7l4 0"></path><path d="M9 11l4 0"></path></svg>
+
+                                    </div>
+                                    <div class="list-item">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/map-pin -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 18.5l-3 -1.5l-6 3v-13l6 -3l6 3l6 -3v7"></path><path d="M9 4v13"></path><path d="M15 7v5"></path><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z"></path><path d="M19 18v.01"></path></svg>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>}
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card bg-transparent border-0">
+                <div class="card-body">
+
+                    <ul class="pagination justify-content-sm-end">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="@Model.Prev" tabindex="-1" aria-disabled="true">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 6l-6 6l6 6"></path></svg>
+                                prev
+                            </a>
+                        </li>
+                        @foreach (var pg in Model.Pages)
+                        {
+            <li class="page-item"><a class="page-link" href="@pg">@pg</a></li>}
+                        <li class="page-item">
+                            <a class="page-link" href="@Model.Next">
+                                next <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 6l6 6l-6 6"></path></svg>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        const app = new Vue({
+            el: '#filter',
+            data() {
+                return {
+                    inputText: '@Html.Raw(Context.Request.Query["search"])',
+                    columnOptions: ['id', 'severity', 'title', 'org', 'team', 'cve', 'cwe', 'description', 'status', 'tool', 'tool_type', 'order_by', 'created'],
+                    showColumnOptions: false,
+                    error: {
+                        has: false
+                    }
+                };
+            },
+            methods: {
+                showOptions() {
+                    const input = this.inputText.toLowerCase();
+                    splits = input.split("|");
+                    for (var i = 0; i < splits.length; i++) {
+                        if (/^(\w*):{1}([\!\<\>\%\/\&]?\s?)(\"?[a-zA-Z0-9\sá-ú\~\,]*\"?)$/gi.test(splits[i].trim())) {
+                            this.error.has = false;
+                        } else {
+                            this.error.has = true;
+                        }
+                    }
+
+                    const last = splits[splits.length - 1]
+                    if (last.length <= 1) {
+                        const column = last.slice(0, -1).trim();
+                        this.showColumnOptions = true;
+                        this.filteredColumnOptions = this.columnOptions.filter(opt => opt.toLowerCase().includes(column));
+                    } else {
+                        this.showColumnOptions = false;
+                    }
+                },
+                selectOption(option) {
+                    if (this.showColumnOptions) {
+                        var last = this.inputText[this.inputText.length - 1]
+                        if (last != " " && last != "|") {
+                            this.inputText = this.inputText.slice(0, -1) + option + ':';
+                        } else {
+                            this.inputText = this.inputText + option + ':';
+                        }
+                    }
+                    this.showColumnOptions = false;
+                },
+                submit(e) {
+                    if (this.error.has) {
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+    </script>
+
+}

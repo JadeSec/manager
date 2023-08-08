@@ -23,7 +23,7 @@ namespace App.Domain.Entities
         public int RoleResourceId { get; set; }
         public RoleResourceEntity RoleResource { get; set; }
 
-        [ForeignKey("RoleResource")]
+        [ForeignKey("RolePermission")]
         [Column("role_permission_id")]
         public int RolePermissionId { get; set; }
         public RoleResourceEntity RolePermission { get; set; }

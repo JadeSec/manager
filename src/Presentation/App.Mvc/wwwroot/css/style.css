@@ -13,6 +13,73 @@
     border-top: solid 2px var(--tblr-body-bg);
 }
 
+.severity.card {
+    --tblr-card-spacer-y: 0.4rem !important;
+    --tblr-card-border-color: unset !important;
+}
+
+.severity [type="checkbox"] {
+    margin-top: 2.3rem !important;
+}
+
+.severity .list-inline-item {
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    max-width: 20rem;
+    font-weight: 200;
+}
+
+.severity a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inherit;
+}
+
+.severity .ui-tooltip {
+    white-space: pre-line;
+}
+
+.severity .ui-tooltip-content {
+    white-space: pre-line;
+}
+
+.form-control:focus {
+    border-color: var(--tblr-muted-lt) !important;
+    box-shadow: unset !important;
+}
+
+.form-control.is-valid, .was-validated .form-control:valid {
+    border-color: var(--tblr-muted-lt) !important;
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+    border-color: var(--tblr-muted-lt) !important;
+}
+
+
+#filter .options {
+    display: inline-flex;   
+    margin-left: 2.5rem;
+    margin-top: -4px;    
+    align-content: center;
+    z-index: 9;
+}
+
+    #filter .options div {
+        background: #000000;
+        font-weight: 400;
+        padding: 4px;
+        cursor: pointer;
+        margin-inline: 4px;
+        color: #ffffff;
+    }
+
+    #filter .options div:hover {        
+        font-weight: bold;        
+    }
+
 /* Apenas em telas menores que a de um smartphone*/
 @media screen and (max-width: 768px) {
 }

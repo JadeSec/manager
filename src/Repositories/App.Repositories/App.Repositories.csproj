@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\App.Domain\App.Domain.csproj" />
+    <ProjectReference Include="..\..\Infra\Implementation\App.Infra.Implementation.Filter\App.Infra.Implementation.Filter.csproj" />
     <ProjectReference Include="..\..\Infra\Integration\App.Infra.Integration.Database\App.Infra.Integration.Database.csproj" />
   </ItemGroup>
 

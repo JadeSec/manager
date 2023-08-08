@@ -42,6 +42,15 @@
     });
 })();
 
+//This function is responsible per show/hidden tooltip
+
+(function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+})();
+
 //This function is responsible per enable input mask
 (function () {
     document.addEventListener("DOMContentLoaded", function () {
@@ -54,6 +63,27 @@
                 mask: mask,
                 lazy: maskVisible
             });
+        });
+    });
+})();
+
+
+//This function is responsible per change colors badge findings
+(function () {
+    document.addEventListener("DOMContentLoaded", function () {
+        const divs = document.querySelectorAll("[data-severity]");
+        divs.forEach(item => {
+            const severity = item.getAttribute("data-severity");
+            const span = $(item).children("span");
+            if (severity == "low") {
+                span.addClass("bg-indigo");
+            } else if (severity == "medium") {
+                span.addClass("bg-yellow");
+            } else if (severity == "high") {
+                span.addClass("bg-warning");
+            } else if (severity == "critical") {
+                span.addClass("bg-red");
+            }              
         });
     });
 })();
