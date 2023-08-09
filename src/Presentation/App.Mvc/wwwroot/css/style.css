@@ -68,9 +68,9 @@
 }
 
     #filter .options div {
-        background: #000000;
+        background: #2bd88d;
         font-weight: 400;
-        padding: 4px;
+        padding-inline: 1rem;
         cursor: pointer;
         margin-inline: 4px;
         color: #ffffff;

@@ -24,6 +24,8 @@ namespace App.Infra.Implementation.Filter.Extensions
                     return (T)(object)decimal.Parse(value);
                 else if (type == typeof(bool))
                     return (T)(object)decimal.Parse(value);
+                else if (type == typeof(string))
+                    return (T)(object)value.Replace("\"", string.Empty);
                 else
                     throw new NotImplementedException("The type not implemented in this converter.");
             }

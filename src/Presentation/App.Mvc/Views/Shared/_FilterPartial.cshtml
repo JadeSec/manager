@@ -1,0 +1,99 @@
+﻿@using App.Infra.Implementation.Filter.Interfaces
+@model IPaginate
+
+<div class="card">
+    <div id="filter" class="card-body">
+        <form asp-controller="Finding" asp-action="Index" method="get">
+            <ul class="pagination ">
+                <li class="page-item page-prev disabled">
+                    <div class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <div class="page-item-subtitle">Filter</div>
+                    </div>
+                </li>
+            </ul>
+            <div class="input-group mb-2">
+                <span class="input-group-text text-white" :class="error ? 'bg-danger' : 'bg-success'">
+                    <i class="ti ti-filter fs-3"></i>
+                </span>
+                <input name="search" v-model="inputText" autofocus="true" @@input="onChange" @@keydown.enter="submit" :class="error ? 'is-invalid' : 'is-valid'" class="form-control" placeholder="Ex: id:123|title:%Abc">
+            </div>
+            <div v-if="showCriteriaOptions" class="options">
+                <div v-for="column in filteredCriteriaOptions" :key="column" @@click="selectOption(column)">
+                    {{ column }}:
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    (function () {
+        new Vue({
+            el: '#filter',
+            data() {
+                return {
+                    inputText: '@Html.Raw(Context.Request.Query["search"])',
+                    criteriaOptions: @Html.Raw(Json.Serialize(Model.Filter.Configuration.Criteria)),                    
+                    showCriteriaOptions: false,
+                    error: false
+                };
+            },
+            methods: {
+                onChange() {
+                    const input = this.inputText.toLowerCase();
+                    splits = input.split("|");
+                    for (var i = 0; i < splits.length; i++) {
+                        if (this.isValidCriteria(splits[i])) {
+                            this.error = false;
+                        } else {
+                            this.error = true;
+                        }
+                    }
+
+                    const last = splits[splits.length - 1]
+                    if (last.length <= 1) {
+                        const column = last.slice(0, -1).trim();                     
+                        this.showCriteriaOptions = true;
+                        this.filteredCriteriaOptions = this.criteriaOptions.filter(opt => opt.name.toLowerCase().includes(column)).map(opt => opt.name);
+                    } else {
+                        this.showCriteriaOptions = false;
+                    }
+                },
+                selectOption(option) {
+                    if (this.showCriteriaOptions) {
+                        var last = this.inputText[this.inputText.length - 1]
+                        if (last != " " && last != "|") {
+                            this.inputText = this.inputText.slice(0, -1) + option + ':';
+                        } else {
+                            this.inputText = this.inputText + option + ':';
+                        }
+                    }
+                    this.showCriteriaOptions = false;
+                },
+                isValidCriteria(expression) {
+                    const pattern = /^(\w*):{1}([\!\<\>\%\/\&]?\s?)(\"?[a-zA-Z0-9\sá-ú\~\,\-\_]*\"?)$/i;
+                    if (pattern.test(expression)) {
+                        const match = expression.match(pattern);
+                        if (match != null) {
+                            var name = match[1];
+                            var operator = match[2];
+
+                            const criteria = this.criteriaOptions.find(obj => obj.name === name);
+                            if (criteria) {
+                                const operators = criteria.operators;
+                                operator = operator || "=";
+                                return operators.includes(operator);
+                            }
+                        }                        
+                    }                    
+                    return false;
+                },
+                submit(e) {
+                    if (this.error) {
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+    }) ();
+</script>

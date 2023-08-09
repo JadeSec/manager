@@ -1,6 +1,6 @@
-﻿@using App.Domain.Models
-@using App.Domain.Entities
-@model PaginateModel<FindingEntity>
+﻿@using App.Domain.Entities
+@using App.Infra.Implementation.Filter
+@model Paginate<FindingEntity>
 
 <div class="page-header d-print-none mb-5">
     <div class="container-xl">
@@ -9,7 +9,7 @@
                 <h2 class="page-title">
                     Findings
                 </h2>
-                <small class="pt-1">Showing 20 of the 34233</small>
+                <small class="pt-1">Showing @Model.Items.Count of the @Model.Total</small>
             </div>
             <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
@@ -25,30 +25,7 @@
 <div class="container-xl">
     <div class="row g-4">
         <div class="col-12">
-            <div class="card">
-                <div id="filter" class="card-body">
-                    <form asp-controller="Finding" asp-action="Index" method="get">
-                        <ul class="pagination ">
-                            <li class="page-item page-prev disabled">
-                                <div class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                    <div class="page-item-subtitle">Filter</div>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text text-white" :class="error.has ? 'bg-danger' : 'bg-success'">
-                                <i class="ti ti-filter fs-3"></i>
-                            </span>
-                            <input name="search" v-model="inputText" autofocus="true" @@input="showOptions" @@keydown.enter="submit" :class="error.has ? 'is-invalid' : 'is-valid'" class="form-control" placeholder="severity:low | cwe:123456 | title:sql injection">
-                        </div>
-                        <div v-if="showColumnOptions" class="options">
-                            <div v-for="column in filteredColumnOptions" :key="column" @@click="selectOption(column)">
-                                {{ column }}:
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <partial name="_FilterPartial" model="Model" />
         </div>
 
         <div class="col-md-12">
@@ -143,86 +120,9 @@
         <div class="col-12">
             <div class="card bg-transparent border-0">
                 <div class="card-body">
-
-                    <ul class="pagination justify-content-sm-end">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="@Model.Prev" tabindex="-1" aria-disabled="true">
-                                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 6l-6 6l6 6"></path></svg>
-                                prev
-                            </a>
-                        </li>
-                        @foreach (var pg in Model.Pages)
-                        {
-            <li class="page-item"><a class="page-link" href="@pg">@pg</a></li>}
-                        <li class="page-item">
-                            <a class="page-link" href="@Model.Next">
-                                next <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 6l6 6l-6 6"></path></svg>
-                            </a>
-                        </li>
-                    </ul>
-
+                    <partial name="_PaginationPartial" model="Model" />
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-@section Scripts{
-
-    <script>
-        const app = new Vue({
-            el: '#filter',
-            data() {
-                return {
-                    inputText: '@Html.Raw(Context.Request.Query["search"])',
-                    columnOptions: ['id', 'severity', 'title', 'org', 'team', 'cve', 'cwe', 'description', 'status', 'tool', 'tool_type', 'order_by', 'created'],
-                    showColumnOptions: false,
-                    error: {
-                        has: false
-                    }
-                };
-            },
-            methods: {
-                showOptions() {
-                    const input = this.inputText.toLowerCase();
-                    splits = input.split("|");
-                    for (var i = 0; i < splits.length; i++) {
-                        if (/^(\w*):{1}([\!\<\>\%\/\&]?\s?)(\"?[a-zA-Z0-9\sá-ú\~\,]*\"?)$/gi.test(splits[i].trim())) {
-                            this.error.has = false;
-                        } else {
-                            this.error.has = true;
-                        }
-                    }
-
-                    const last = splits[splits.length - 1]
-                    if (last.length <= 1) {
-                        const column = last.slice(0, -1).trim();
-                        this.showColumnOptions = true;
-                        this.filteredColumnOptions = this.columnOptions.filter(opt => opt.toLowerCase().includes(column));
-                    } else {
-                        this.showColumnOptions = false;
-                    }
-                },
-                selectOption(option) {
-                    if (this.showColumnOptions) {
-                        var last = this.inputText[this.inputText.length - 1]
-                        if (last != " " && last != "|") {
-                            this.inputText = this.inputText.slice(0, -1) + option + ':';
-                        } else {
-                            this.inputText = this.inputText + option + ':';
-                        }
-                    }
-                    this.showColumnOptions = false;
-                },
-                submit(e) {
-                    if (this.error.has) {
-                        e.preventDefault();
-                    }
-                }
-            }
-        });
-    </script>
-
-}

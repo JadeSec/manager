@@ -1,0 +1,37 @@
+﻿@using App.Infra.Implementation.Filter.Interfaces
+@model IPaginate
+
+<ul class="pagination justify-content-sm-end">
+    @if (Model.Prev != -1)
+    {
+        <li class="page-item">
+            <a class="page-link" href="?page=@Model.Prev" tabindex="@Model.Prev" aria-disabled="true">
+                <!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M15 6l-6 6l6 6"></path></svg>
+                prev
+            </a>
+        </li>
+    }
+
+    @foreach (var pg in Model.Pages)
+    {
+        if (Model.Page.Equals(pg))
+        {
+            <li class="page-item active"><a href="?page=@pg" class="page-link">@pg</a></li>
+        }
+        else
+        {
+            <li class="page-item"><a href="?page=@pg" class="page-link">@pg</a></li>                
+        }
+    }
+
+    @if (Model.Next != -1)
+    {
+        <li class="page-item">
+            <a class="page-link" href="?page=@Model.Next" tabindex="@Model.Total" aria-disabled="true">
+                next <!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 6l6 6l-6 6"></path></svg>
+            </a>
+        </li>
+    }
+</ul>

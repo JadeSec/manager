@@ -1,14 +1,11 @@
-﻿using App.Application.Finding;
-using App.Domain.Entities;
-using App.Domain.Models;
+﻿using System.Threading.Tasks;
+using App.Application.Finding;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace App.Mvc.Controllers
 {
     public class FindingController : Controller
     {
-
         private readonly Finding _finding;
 
         public FindingController(Finding finding)
@@ -17,9 +14,9 @@ namespace App.Mvc.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> IndexAsync([FromQuery]string search)
-        {            
-            return View(await _finding.GetAsync(search));
+        public async Task<IActionResult> IndexAsync([FromQuery] string search, [FromQuery] int page = 0)
+        {
+            return View(await _finding.GetAsync(search, page));
         }
     }
 }
