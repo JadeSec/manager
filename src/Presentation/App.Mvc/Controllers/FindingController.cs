@@ -14,7 +14,7 @@ namespace App.Mvc.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> IndexAsync([FromQuery] string search, [FromQuery] int page = 0)
+        public async Task<IActionResult> IndexAsync([FromQuery] string search, [FromQuery] int page = 1)
         {
             return View(await _finding.GetAsync(search, page));
         }
