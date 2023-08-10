@@ -18,10 +18,11 @@ namespace App.Application.Finding
 
         public async Task<Paginate<FindingEntity>> GetAsync(string expression, int page)
         {
-            var filter = new Filter(expression, configuration: new Configuration
+            var filter = new Filter(expression, page, configuration: new Configuration
             {
-                ExpressionMax = 5,
+                MaxPerPage = 10,                
                 ValueLength = 255,
+                ExpressionMax = 5,
                 Criteria = new Criteria[]
                 {
                     new("id",new string[] { "=" }),
@@ -33,6 +34,7 @@ namespace App.Application.Finding
                     new("created",new string[] { "=" }),
                     new("sla",new string[] { "=" }),
                     new("cwe",new string[] { "=" }),
+                    new("status",new string[] { "=" }),
                     new("cve",new string[] { "=" }),
                     new("file_path",new string[] { "=" }),
                     new("sha1",new string[] { "=" }),
@@ -41,7 +43,7 @@ namespace App.Application.Finding
                 }
             });
 
-            return await _findingRep.GetAsync(filter, page);
+            return await _findingRep.GetAsync(filter);
         }
     }
 }

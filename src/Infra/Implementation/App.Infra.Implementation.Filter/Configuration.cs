@@ -4,19 +4,21 @@ namespace App.Infra.Implementation.Filter
 {
     public class Configuration
     {
+        public int MaxPerPage { get; set; }
+
         public int ValueLength { get; set; }
 
         public int ExpressionMax { get; set; }
 
         public Criteria[] Criteria { get; set; }  
 
-        public bool isValidValueLenght(string value)
+        public bool IsValidValueLenght(string value)
           => value.Length <= ValueLength;
 
-        public bool isValidExpressionMax(int count)
+        public bool IsValidExpressionMax(int count)
           => count <= ExpressionMax;
 
-        public bool isValidCriteria(string attr)
-          => Criteria.Any(x => x.Name.Equals(attr));
+        public bool IsValidCriteria(string attr)
+          => Criteria.Any(x => x.Name.Equals(attr));        
     }
 }

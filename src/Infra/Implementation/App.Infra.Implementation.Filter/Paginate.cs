@@ -18,19 +18,23 @@ namespace App.Infra.Implementation.Filter
         public int Page { get; set; }
 
         public int Total { get; set; }
+        
+        public int StartIndex => (_maxPerPage * (Page - 1)) + 1;
+
+        public int EndIndex => Math.Min(_maxPerPage * Page, Total);
 
         public List<T> Items { get; set; }
 
         public Filter Filter { get; set; }
 
-        public Paginate(Filter filter, List<T> items, int page, int total, int maxPerPage = 10)
+        public Paginate(Filter filter, List<T> items, int total)
         {
-            _maxPerPage = maxPerPage;
-
-            Page = Math.Max(page, 1);
+            _maxPerPage = filter.Configuration.MaxPerPage;
+            
             Total = total;
             Items = items;
             Filter = filter;
+            Page = filter.CurrentPage;
         }
 
         public int[] Pages

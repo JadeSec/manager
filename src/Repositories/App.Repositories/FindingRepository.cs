@@ -1,13 +1,12 @@
-﻿using App.Domain.Entities;
-using Microsoft.Extensions.Logging;
-using App.Infra.Integration.Database;
-using App.Infra.Integration.Database.Providers;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using System;
 using System.Linq;
-using System;
+using App.Domain.Entities;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using App.Infra.Integration.Database;
 using App.Infra.Implementation.Filter;
+using App.Infra.Integration.Database.Providers;
 using App.Infra.Implementation.Filter.Extensions;
 
 namespace App.Repositories
@@ -19,14 +18,9 @@ namespace App.Repositories
         public FindingRepository(ILogger<FindingRepository> logger)
         {
             _logger = logger;
-        }
-      
-        bool SeverityIn(FindingEntity finding, string value)
-        {
-            return finding.Severity.Name.Contains(value);
-        }
+        }      
 
-        public async Task<Paginate<FindingEntity>> GetAsync(Filter filter, int skip = 0, int take = 10)
+        public async Task<Paginate<FindingEntity>> GetAsync(Filter filter)
         {
             var entity = Context.Set<FindingEntity>();
             var query = entity.FilterLike("title", filter, (e, v) => e.Where(x => x.Title.ToLower().Contains(v.ToLower())))
@@ -36,6 +30,7 @@ namespace App.Repositories
                               .FilterEqual<FindingEntity, string>("project", filter, (e, v) => e.Where(x => x.Project.Name.ToLower().Equals(v.ToLower())))
                               .FilterEqual<FindingEntity, string>("team", filter, (e, v) => e.Where(x => x.Project.Team.Name.ToLower().Equals(v.ToLower())))
                               .FilterEqual<FindingEntity, string>("org", filter, (e, v) => e.Where(x => x.Project.Organization.Name.ToLower().Equals(v.ToLower())))
+                              .FilterEqual<FindingEntity, string>("status", filter, (e, v) => e.Where(x => x.Status.Name.ToLower().Equals(v.ToLower())))
                               .FilterEqual<FindingEntity, string>("created", filter, (e, v) => e.Where(x => x.Created.Date.Equals(DateTime.Parse(v).Date)))
                               .FilterEqual<FindingEntity, int>("sla", filter, (e, v) => e.Where(x => x.Severity.Sla.Equals(v)))
                               .FilterEqual<FindingEntity, string>("cwe", filter, (e, v) => e.Where(x => x.Cwe.ToLower().Equals(v.ToLower())))
@@ -72,11 +67,11 @@ namespace App.Repositories
 
             var total = await query.CountAsync();
             var items = await query.AsNoTracking()
-                                   .Skip(skip)
-                                   .Take(take)
+                                   .Skip(filter.Page)
+                                   .Take(filter.Configuration.MaxPerPage)
                                    .ToListAsync();
 
-            return new Paginate<FindingEntity>(filter, items, skip, total, take);
+            return new Paginate<FindingEntity>(filter, items, total);
         }
     }
 }

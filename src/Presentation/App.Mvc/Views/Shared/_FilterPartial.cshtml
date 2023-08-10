@@ -43,7 +43,7 @@
                     const input = this.inputText.toLowerCase();
                     splits = input.split("|");
                     for (var i = 0; i < splits.length; i++) {
-                        if (this.isValidCriteria(splits[i])) {
+                        if (this.isValidCriteria(splits[i]) || splits[i].length == 0) {
                             this.error = false;
                         } else {
                             this.error = true;

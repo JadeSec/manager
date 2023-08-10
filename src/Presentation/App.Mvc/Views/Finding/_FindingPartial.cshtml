@@ -1,0 +1,67 @@
+﻿@using App.Domain.Entities
+@using App.Infra.Implementation.Filter
+@model Paginate<FindingEntity>
+
+<div class="row row-cards">
+    <div class="space-y">
+        @foreach (var finding in Model.Items)
+        {
+            <div class="card severity">
+                <div class="row g-0">
+                    <div class="card-body p-3 ps-4 shadow">
+                        <div class="row">
+                            <div class="col">
+                                <div class="list-inline-item severity" data-severity="@finding.Severity.Name.ToLower()">
+                                    <span class="badge text-white">@finding.Severity.Name</span>
+                                </div>
+                                <div class="list-inline-item severity">
+                                    <span class="badge badge-outline text-dark">@finding.Status.Name</span>
+                                </div>
+                                <h3 class="mb-0">
+                                    <a class="text-dark" href="#">
+                                        @finding.Title
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="mt-3 list-inline mb-0 text-secondary d-sm-block">
+                                    <div class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="ID: @finding.Id">
+                                        <i class="ti ti-dna fs-3"></i>
+                                        @finding.Id
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-building-skyscraper fs-3"></i>
+                                        @finding.Project.Organization.Name
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-users-group fs-3"></i>
+                                        @finding.Project.Team.Name
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-folder fs-3"></i>
+                                        @finding.Project.Name
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-shield-search fs-3"></i>
+                                        @finding.Tool.Type.Name/@finding.Tool.Name
+                                    </div>
+
+                                    <div class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="SLA: @finding.Severity.Sla days">
+                                        <i class="ti ti-clock fs-3"></i>
+                                        @finding.Severity.Sla
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-calendar-event fs-3"></i>
+                                        @finding.Created.ToString("D")
+                                    </div>
+                                </div>                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -7,7 +7,9 @@ using System.Text.RegularExpressions;
 namespace App.Infra.Implementation.Filter
 {
     public class Filter
-    {        
+    {
+        private int _page;
+
         private const string FILTER_SEPARATOR = "|";
         private readonly string[] FILTER_OPERATORS = new string[] { "!", "<", ">", "%", "/", "&", "=" };
         private const string FILTER_PATTERN_MATCH_RGX = @"^(\w*):{1}([\!\<\>\%\/\&]?\s?)(\""?[a-zA-Z0-9\sá-ú\~\,\-_]*\""?)$";
@@ -16,13 +18,25 @@ namespace App.Infra.Implementation.Filter
 
         public List<Expression> Expressions = new List<Expression>();
 
-        public Filter(string input, Configuration configuration)
+        public string Expression { get; set; }
+
+        public int CurrentPage =>  _page < 1? 1: _page;
+
+        public int Page
         {
+            set => _page = value;
+            get => Math.Max(Configuration.MaxPerPage * (_page - 1), 1);
+        }
+
+        public Filter(string input, int page, Configuration configuration)
+        {
+            Page = page;
+            Expression = input;
             Configuration = configuration;
 
             var filters = input?.Split(FILTER_SEPARATOR) ?? new string[0];
            
-            if (configuration != null && !configuration.isValidExpressionMax(filters.Length))
+            if (configuration != null && !configuration.IsValidExpressionMax(filters.Length))
                 throw new FilterException($"Allowed only {configuration.ExpressionMax} expression per search.");
 
             foreach (var filter in filters)
@@ -34,10 +48,10 @@ namespace App.Infra.Implementation.Filter
                     if (expression.Operator != "" && !FILTER_OPERATORS.Any(x => x.Equals(expression.Operator)))
                         throw new FilterException($"Invalid operator.");
 
-                    if (!configuration.isValidValueLenght(expression.Value))
+                    if (!configuration.IsValidValueLenght(expression.Value))
                         throw new FilterException($"Invalid value lenght.");
 
-                    if (!configuration.isValidCriteria(expression.Name))
+                    if (!configuration.IsValidCriteria(expression.Name))
                         throw new FilterException($"Invalid attribute name.");
                 }
 
