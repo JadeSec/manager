@@ -2,8 +2,7 @@
 @model IPaginate
 
 <div class="card">
-    <div id="filter" class="card-body">
-        <form asp-controller="Finding" asp-action="Index" method="get">
+    <div id="filter" class="card-body">     
             <ul class="pagination ">
                 <li class="page-item page-prev disabled">
                     <div class="page-link" href="#" tabindex="-1" aria-disabled="true">
@@ -22,7 +21,6 @@
                     {{ column }}:
                 </div>
             </div>
-        </form>
     </div>
 </div>
 

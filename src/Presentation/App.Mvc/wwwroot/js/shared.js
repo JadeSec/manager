@@ -12,24 +12,19 @@
     var pathname = window.location.pathname;
 
     // Get all menu items
-    var navItems = document.querySelectorAll('.nav-item');
+    var navItems = document.querySelectorAll('.nav-item');   
 
     // Iterate through each menu item
     for (var i = 0; i < navItems.length; i++) {
         var navItem = navItems[i];
-
-        // Get the link of the menu item
-        var link = navItem.querySelector('a');
-
-        // Get the value of the "href" attribute of the link
-        var href = link.getAttribute('href');
+        
+        // Get the match of the menu item
+        var match = navItem.getAttribute("data-url-match");
 
         // Check if the URL contains the value of the "href" attribute of the link
-        if (new RegExp(`(${href}).*`, 'gm').test(pathname)) {
+        if (new RegExp(match, 'gm').test(pathname)) {
             // Add the "active" class to the corresponding menu item
-            navItem.classList.add('active');
-            //navItem.classList.remove('text-muted');
-            $(link).toggleClass("text-muted");
+            navItem.classList.add('active');            
         }
     }
 })();

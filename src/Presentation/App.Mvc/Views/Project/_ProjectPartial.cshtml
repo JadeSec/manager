@@ -1,0 +1,48 @@
+﻿@using App.Domain.Entities
+@using App.Infra.Implementation.Filter
+@model Paginate<ProjectEntity>
+
+<div class="row row-cards">
+    <div class="space-y">
+        @foreach (var project in Model.Items)
+        {
+            <div class="card severity">
+                <div class="row g-0">
+                    <div class="card-body p-3 ps-4 shadow">
+                        <div class="row">
+                            <div class="col">          
+                                <h3 class="mb-0">
+                                    <a class="text-dark" href="#">
+                                          @project.Name
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="mt-3 list-inline mb-0 text-secondary d-sm-block">
+                                    <div class="list-inline-item" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="ID: @project.Id">
+                                        <i class="ti ti-dna fs-3"></i>
+                                        @project.Id
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-building-skyscraper fs-3"></i>
+                                        @project.Organization.Name
+                                    </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-users-group fs-3"></i>
+                                        @project.Team.Name
+                                    </div>                                                    
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-calendar-event fs-3"></i>
+                                        @project.Created.ToString("D")
+                                    </div>
+                                </div>                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

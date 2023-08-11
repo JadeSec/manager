@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infra\Bootstrap\App.Infra.Bootstrap\App.Infra.Bootstrap.csproj" />
+    <ProjectReference Include="..\..\Repositories\App.Repositories\App.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>

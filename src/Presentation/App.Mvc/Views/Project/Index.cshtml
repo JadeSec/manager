@@ -1,13 +1,13 @@
 ﻿@using App.Domain.Entities
 @using App.Infra.Implementation.Filter
-@model Paginate<FindingEntity>
+@model Paginate<ProjectEntity>
 
 <div class="page-header d-print-none mb-5">
     <div class="container-xl">
         <div class="row g-2 align-items-center">
             <div class="col">
                 <h2 class="page-title">
-                    Findings
+                    Projects
                 </h2>                
                 <small class="pt-1">Showing @Model.StartIndex to @Model.EndIndex of @Model.Total entries</small>
             </div>            
@@ -17,12 +17,12 @@
 <div class="container-xl">
     <div class="row g-4">
         <div class="col-12">
-            <form asp-controller="Finding" asp-action="Index" method="get">
+            <form asp-controller="Project" asp-action="Index" method="get">
                 <partial name="_FilterPartial" model="Model" />
-            </form>
+            </form>            
         </div>
         <div class="col-md-12">
-            <partial name="_FindingPartial" model="Model" />
+            <partial name="_ProjectPartial" model="Model" />
         </div>
         <div class="col-12">
             <div class="card bg-transparent border-0">
