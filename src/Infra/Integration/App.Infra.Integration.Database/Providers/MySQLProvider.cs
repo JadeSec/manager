@@ -9,13 +9,16 @@ using App.Infra.Integration.Database.Interfaces;
 using SqlKata.Compilers;
 using MySql.Data.MySqlClient;
 using System.Data.Common;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 
 namespace App.Infra.Integration.Database.Providers
 {
     [Scoped]
     public class MySQLProvider: DbContext, IProvider, IScoped<MySQLProvider>
     {       
-        readonly IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
+        private readonly IHostEnvironment _environment;
 
         private string[] _assemblies
             => _configuration.GetSection("Database")
@@ -36,8 +39,11 @@ namespace App.Infra.Integration.Database.Providers
         public Compiler Compiler 
             => new MySqlCompiler();
 
-        public MySQLProvider(IConfiguration configuration) : base()
-            => _configuration = configuration;
+        public MySQLProvider(IConfiguration configuration, IHostEnvironment environment) : base()
+        {
+            _environment = environment;
+            _configuration = configuration;
+        }            
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -71,7 +77,10 @@ namespace App.Infra.Integration.Database.Providers
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {        
+            {
+                if (_environment.IsDevelopment())
+                    optionsBuilder.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+
                 optionsBuilder.UseMySql(ConnectionString);                
             }
         }

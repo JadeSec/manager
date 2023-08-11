@@ -23,7 +23,7 @@ namespace App.Repositories
         public async Task<Paginate<FindingEntity>> GetAsync(Filter filter)
         {
             var entity = Context.Set<FindingEntity>();
-            var query = entity.FilterLike("title", filter, (e, v) => e.Where(x => x.Title.ToLower().Contains(v.ToLower())))
+            var query = entity.FilterLike("title", filter, (e, v) => e.Where(x => x.Title.ToLower().Contains(v)))
                               .FilterEqual<FindingEntity, long>("id", filter, (e, v) => e.Where(x => x.Id.Equals(v)))
                               .FilterEqual<FindingEntity, string>("title", filter, (e, v) => e.Where(x => x.Title.Equals(v)))
                               .FilterEqual<FindingEntity, string>("severity", filter, (e, v) => e.Where(x => x.Severity.Name.ToLower().Equals(v.ToLower())))

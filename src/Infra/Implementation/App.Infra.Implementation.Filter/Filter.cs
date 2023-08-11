@@ -25,7 +25,7 @@ namespace App.Infra.Implementation.Filter
         public int Page
         {
             set => _page = value;
-            get => Math.Max(Configuration.MaxPerPage * (_page - 1), 1);
+            get => Math.Max(Configuration.MaxPerPage * (_page - 1), 0);
         }
 
         public Filter(string input, int page, Configuration configuration)
