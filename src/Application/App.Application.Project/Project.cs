@@ -27,9 +27,9 @@ namespace App.Application.Project
                 {
                     new("id",new string[] { "=" }),
                     new("name", new string[] { "=", "%"}),
-                    new("created",new string[] { "=" }),
                     new("team",new string[] { "=" }),
                     new("org",new string[] { "=" }),                    
+                    new("provider",new string[] { "=" }),
                 }
             });
 

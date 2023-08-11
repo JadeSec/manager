@@ -44,7 +44,8 @@ namespace App.Repositories
                               .Include(x => x.Tool)
                               .Include(x => x.Tool.Type)
                               .Include(x => x.Project.Team)
-                              .Include(x => x.Project.Organization)                               
+                              .Include(x => x.Project.Provider)
+                              .Include(x => x.Project.Organization)                                                             
                               .Select(x => new FindingEntity()
                               {
                                 Id = x.Id,
@@ -61,7 +62,11 @@ namespace App.Repositories
                                 {
                                     Name = x.Project.Name,
                                     Organization = new() { Name = x.Project.Organization.Name },
-                                    Team = new() { Name = x.Project.Team.Name }
+                                    Team = new() { Name = x.Project.Team.Name },
+                                    Provider = new() { 
+                                        Name = x.Project.Provider.Name, 
+                                        Url = x.Project.Provider.Url 
+                                    }
                                 }
                               });
 
@@ -69,6 +74,7 @@ namespace App.Repositories
             var items = await query.AsNoTracking()
                                    .Skip(filter.Page)
                                    .Take(filter.Configuration.MaxPerPage)
+                                   .OrderByDescending(x => x.Created)
                                    .ToListAsync();
 
             return new Paginate<FindingEntity>(filter, items, total);

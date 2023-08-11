@@ -26,16 +26,22 @@ namespace App.Repositories
             var query = entity.FilterLike("name", filter, (e, v) => e.Where(x => x.Name.ToLower().Contains(v)))
                               .FilterEqual<ProjectEntity, int>("id", filter, (e, v) => e.Where(x => x.Id.Equals(v)))
                               .FilterEqual<ProjectEntity, string>("name", filter, (e, v) => e.Where(x => x.Name.Equals(v)))
-                              .FilterEqual<ProjectEntity, string>("created", filter, (e, v) => e.Where(x => x.Created.Date.Equals(DateTime.Parse(v).Date)))
                               .FilterEqual<ProjectEntity, string>("team", filter, (e, v) => e.Where(x => x.Team.Name.Equals(v)))
                               .FilterEqual<ProjectEntity, string>("org", filter, (e, v) => e.Where(x => x.Organization.Name.Equals(v)))
+                              .FilterEqual<ProjectEntity, string>("provider", filter, (e, v) => e.Where(x => x.Provider.Name.Equals(v)))
                               .Include(x => x.Team)
+                              .Include(x => x.Provider)
                               .Include(x => x.Organization)
                               .Select(x => new ProjectEntity()
                               {
                                   Id = x.Id,
                                   Name = x.Name,
-                                  Created = x.Created,                                  
+                                  Created = x.Created,
+                                  Provider = new()
+                                  {
+                                      Name = x.Provider.Name,
+                                      Url = x.Provider.Url
+                                  },
                                   Team = new()
                                   {
                                       Name = x.Team.Name                                     
@@ -50,6 +56,7 @@ namespace App.Repositories
             var items = await query.AsNoTracking()
                                    .Skip(filter.Page)
                                    .Take(filter.Configuration.MaxPerPage)
+                                   .OrderByDescending(x => x.Created)
                                    .ToListAsync();
 
             return new Paginate<ProjectEntity>(filter, items, total);

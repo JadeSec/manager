@@ -32,11 +32,11 @@
                                     <div class="list-inline-item">
                                         <i class="ti ti-users-group fs-3"></i>
                                         @project.Team.Name
-                                    </div>                                                    
-                                    <div class="list-inline-item">
-                                        <i class="ti ti-calendar-event fs-3"></i>
-                                        @project.Created.ToString("D")
                                     </div>
+                                    <div class="list-inline-item">
+                                        <i class="ti ti-brand-github fs-3"></i>
+                                        <a target="_blank" class="text-dark" href="@project.Provider.Url/@project.Organization.Name/@project.Name">@project.Name</a>
+                                    </div>                                  
                                 </div>                             
                             </div>
                         </div>

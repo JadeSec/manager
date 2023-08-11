@@ -34,7 +34,7 @@
     /*white-space: nowrap;*/
     overflow: hidden;
     text-overflow: ellipsis;
-    display: inherit;
+    display: initial;
 }
 
 .severity .ui-tooltip {
