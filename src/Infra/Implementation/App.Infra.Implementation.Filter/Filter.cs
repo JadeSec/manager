@@ -12,7 +12,7 @@ namespace App.Infra.Implementation.Filter
 
         private const string FILTER_SEPARATOR = "|";
         private readonly string[] FILTER_OPERATORS = new string[] { "!", "<", ">", "%", "/", "&", "=" };
-        private const string FILTER_PATTERN_MATCH_RGX = @"^(\w*):{1}([\!\<\>\%\/\&]?\s?)(\""?[a-zA-Z0-9\sá-ú\~\,\-_]*\""?)$";
+        private const string FILTER_PATTERN_MATCH_RGX = @"^\s?(\w*):{1}([\!\<\>\%\/\&]?\s?)(\""?[a-zA-Z0-9\sá-ú\~\,\-_]*\""?)$";
 
         public Configuration Configuration { get; private set; }
 
@@ -34,14 +34,15 @@ namespace App.Infra.Implementation.Filter
             Expression = input;
             Configuration = configuration;
 
-            var filters = input?.Split(FILTER_SEPARATOR) ?? new string[0];
-           
-            if (configuration != null && !configuration.IsValidExpressionMax(filters.Length))
+            var split = input?.Split(FILTER_SEPARATOR)?? new string[0];
+            var filters = split.Where(x => x.Length > 0).ToList();
+
+            if (configuration != null && !configuration.IsValidExpressionMax(filters.Count))
                 throw new FilterException($"Allowed only {configuration.ExpressionMax} expression per search.");
 
             foreach (var filter in filters)
             {
-                var expression = _getExpression(filter);
+                var expression = _getExpression(filter.Trim());
                 
                 if(configuration != null)
                 {

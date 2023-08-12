@@ -69,7 +69,7 @@
                     this.showCriteriaOptions = false;
                 },
                 isValidCriteria(expression) {
-                    const pattern = /^(\w*):{1}([\!\<\>\%\/\&]?\s?)(\"?[a-zA-Z0-9\sá-ú\~\,\-\_]*\"?)$/i;
+                    const pattern = /^\s?(\w*):{1}([\!\<\>\%\/\&]?\s?)(\"?[a-zA-Z0-9\sá-ú\~\,\-\_]*\"?)$/i;
                     if (pattern.test(expression)) {
                         const match = expression.match(pattern);
                         if (match != null) {
