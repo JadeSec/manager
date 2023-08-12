@@ -1,0 +1,35 @@
+﻿@using App.Domain.Entities
+@using App.Infra.Implementation.Filter
+@model Paginate<ProjectOrganizationEntity>
+
+<div class="page-header d-print-none mb-5">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    Organizations
+                </h2>                
+                <small class="pt-1">Showing @Model.StartIndex to @Model.EndIndex of @Model.Total entries</small>
+            </div>            
+        </div>
+    </div>
+</div>
+<div class="container-xl">
+    <div class="row g-4">
+        <div class="col-12">
+            <form asp-controller="Organization" asp-action="Index" method="get">
+                <partial name="_FilterPartial" model="Model" />
+            </form>            
+        </div>
+        <div class="col-md-12">
+            <partial name="_OrganizationPartial" model="Model" />
+        </div>
+        <div class="col-12">
+            <div class="card bg-transparent border-0">
+                <div class="card-body">
+                    <partial name="_PaginationPartial" model="Model" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

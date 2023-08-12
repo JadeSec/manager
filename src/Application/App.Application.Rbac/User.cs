@@ -1,22 +1,22 @@
 ﻿using App.Domain.Entities;
+using System.Threading.Tasks;
 using App.Infra.Bootstrap.Attributes;
 using App.Infra.Implementation.Filter;
 using App.Repositories;
-using System.Threading.Tasks;
 
-namespace App.Application.Project
+namespace App.Application.Rbac
 {
     [Transient]
-    public class Organization
+    public class User
     {
-        private readonly ProjectOrganizationRepository _projectOrgRep;
+        private readonly UserRepository _userRep;
 
-        public Organization(ProjectOrganizationRepository projectOrganizationRepository)
+        public User(UserRepository userRepository)
         {
-            _projectOrgRep = projectOrganizationRepository;
+            _userRep = userRepository;
         }
 
-        public async Task<Paginate<ProjectOrganizationEntity>> GetAsync(string expression, int page)
+        public async Task<Paginate<UserEntity>> GetAsync(string expression, int page)
         {
             var filter = new Filter(expression, page, configuration: new Configuration
             {
@@ -26,10 +26,13 @@ namespace App.Application.Project
                 Criteria = new Criteria[]
                 {
                     new("name", new string[] { "=", "%"}),
+                    new("email", new string[] { "=", "%"}),
+                    new("surname", new string[] { "=", "%"}),
+                    new("username", new string[] { "=", "%"})
                 }
             });
 
-            return await _projectOrgRep.GetAsync(filter);
+            return await _userRep.GetAsync(filter);
         }
     }
 }

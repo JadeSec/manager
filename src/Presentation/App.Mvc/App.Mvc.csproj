@@ -18,6 +18,7 @@
     <ProjectReference Include="..\..\Application\App.Application.Finding\App.Application.Finding.csproj" />
     <ProjectReference Include="..\..\Application\App.Application.Poc\App.Application.Poc.csproj" />
     <ProjectReference Include="..\..\Application\App.Application.Project\App.Application.Project.csproj" />
+    <ProjectReference Include="..\..\Application\App.Application.Rbac\App.Application.Rbac.csproj" />
     <ProjectReference Include="..\..\Infra\CrossCutting\App.Infra.CrossCutting\App.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\..\Repositories\App.Repositories\App.Repositories.csproj" />
   </ItemGroup>

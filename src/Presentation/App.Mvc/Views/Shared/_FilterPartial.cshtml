@@ -14,7 +14,7 @@
                 <span class="input-group-text text-white" :class="error ? 'bg-danger' : 'bg-success'">
                     <i class="ti ti-filter fs-3"></i>
                 </span>
-                <input name="search" v-model="inputText" autofocus="true" @@input="onChange" @@keydown.enter="submit" :class="error ? 'is-invalid' : 'is-valid'" class="form-control" placeholder="Ex: id:123|title:%Abc">
+                <input name="search" v-model="inputText" autofocus="true" @@input="onChange" @@keydown.enter="submit" :class="error ? 'is-invalid' : 'is-valid'" class="form-control" placeholder="Ex: id:123 | title:%Abc">
             </div>
             <div v-if="showCriteriaOptions" class="options">
                 <div v-for="column in filteredCriteriaOptions" :key="column" @@click="selectOption(column)">
