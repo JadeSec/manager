@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Domain.Entities
 {
-    [Table("project_team")]
+    [Table("project_teams")]
     public class ProjectTeamEntity
     {       
         [Key]

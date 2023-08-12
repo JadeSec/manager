@@ -2,21 +2,14 @@
 @model IPaginate
 
 <div class="card">
-    <div id="filter" class="card-body">     
-            <ul class="pagination ">
-                <li class="page-item page-prev disabled">
-                    <div class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                        <div class="page-item-subtitle">Filter</div>
-                    </div>
-                </li>
-            </ul>
-            <div class="input-group mb-2">
+    <div id="filter" class="card-body">                 
+            <div class="input-group">
                 <span class="input-group-text text-white" :class="error ? 'bg-danger' : 'bg-success'">
                     <i class="ti ti-filter fs-3"></i>
                 </span>
                 <input name="search" v-model="inputText" autofocus="true" @@input="onChange" @@keydown.enter="submit" :class="error ? 'is-invalid' : 'is-valid'" class="form-control" placeholder="Ex: id:123 | title:%Abc">
             </div>
-            <div v-if="showCriteriaOptions" class="options">
+            <div v-if="showCriteriaOptions" class="options mt-2">
                 <div v-for="column in filteredCriteriaOptions" :key="column" @@click="selectOption(column)">
                     {{ column }}:
                 </div>

@@ -1,0 +1,12 @@
+﻿@using App.Domain.Entities
+@using App.Infra.Implementation.Filter
+@model Paginate<ProjectGroupEntity>
+
+<div class="list-group list-group-flush card">
+    @foreach (var group in Model.Items)
+    {
+        <div href="#" class="list-group-item list-group-item-action" aria-current="true">
+            @group.Name
+        </div>
+    }
+</div>
