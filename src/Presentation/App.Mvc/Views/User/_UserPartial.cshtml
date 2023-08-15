@@ -2,20 +2,36 @@
 @using App.Infra.Implementation.Filter
 @model Paginate<UserEntity>
 
-<div class="row row-cards">
-    @foreach (var user in Model.Items)
-    {
-        <div class="col-md-6 col-lg-3">
-            <div class="card">
-                <div class="card-body p-4 text-center">
-                    <span class="avatar avatar-xl mb-3 rounded" style="background-image: url(@user.Avatar)"></span>
-                    <h3 class="m-0 mb-1"><a href="#">@user.Name @user.Surname</a></h3>
-                    <div class="text-secondary">@user.Email</div>
-                    <div class="mt-3">
-                        <span class="badge bg-purple-lt">@user.Username</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
+<div class="card">
+    <div class="table-responsive">
+        <table class="table table-vcenter card-table">
+            <tbody>
+            @foreach (var user in Model.Items)
+            {
+                <tr>
+                    <td>
+                        <div class="d-flex py-1 align-items-center">
+                            <span class="avatar me-2" style="background-image: url(@user.Avatar)"></span>
+                            <div>
+                                <div class="font-weight-medium fw-bold" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="@user.Username">@user.Name @user.Surname</div>
+                                <div class="text-secondary"><a href="#" class="text-reset">@user.Email</a></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-end">
+                        <div class="divide-x-2">
+                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Update">
+                                <i class="ti ti-http-put fs-icon text-muted"></i>
+                            </a>
+                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Delete">
+                                <i class="ti ti-http-delete fs-icon text-danger"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
 </div>
+

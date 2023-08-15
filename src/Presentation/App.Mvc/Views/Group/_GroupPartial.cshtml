@@ -2,11 +2,34 @@
 @using App.Infra.Implementation.Filter
 @model Paginate<ProjectGroupEntity>
 
-<div class="list-group list-group-flush card">
-    @foreach (var group in Model.Items)
-    {
-        <div href="#" class="list-group-item list-group-item-action" aria-current="true">
-            @group.Name
-        </div>
-    }
+
+<div class="card">
+    <div class="table-responsive">
+        <table class="table table-vcenter card-table">
+            <tbody>
+                @foreach (var group in Model.Items)
+                {
+                <tr>
+                    <td>
+                        <div class="d-flex py-1 align-items-center">
+                            <div>
+                                <div class="font-weight-medium">@group.Name</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-end">
+                        <div class="divide-x-2">
+                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Update">
+                                <i class="ti ti-http-put fs-icon text-muted"></i>
+                            </a>
+                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Delete">
+                                <i class="ti ti-http-delete fs-icon text-danger"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

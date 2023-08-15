@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infra\Bootstrap\App.Infra.Bootstrap\App.Infra.Bootstrap.csproj" />
+    <ProjectReference Include="..\..\Infra\CrossCutting\App.Infra.CrossCutting\App.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\..\Repositories\App.Repositories\App.Repositories.csproj" />
   </ItemGroup>
 

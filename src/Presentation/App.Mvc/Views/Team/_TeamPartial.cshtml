@@ -2,46 +2,35 @@
 @using App.Infra.Implementation.Filter
 @model Paginate<ProjectTeamEntity>
 
-<style>
-    .team .avatar {
-        --tblr-avatar-size: 3.5rem !important;
-    }
-
-    .team .font-weight-medium {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .team .text-secondary {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2; /* number of lines to show */
-        line-height: 1.2; /* fallback */
-        margin-top: 2.5px;
-    }
-</style>
-
-<div class="row row-cards">
-    @foreach (var team in Model.Items)
-    {
-
-    <div class="col-md-6 col-xl-3">       
-        <a class="team card card-link shadow border-0" href="#">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-auto">
-                        <span class="avatar rounded" style="background-image: url(@team.Icon)"></span>
-                    </div>
-                    <div class="col">
-                        <div class="font-weight-medium fw-bold">@team.Name</div>
-                        <div class="text-secondary">@team.Description</div>
-                    </div>
-                </div>
-            </div>
-        </a>
+<div class="card">
+    <div class="table-responsive">
+        <table class="table table-vcenter card-table">
+            <tbody>
+                @foreach (var team in Model.Items)
+                {
+                <tr>
+                    <td>
+                        <div class="d-flex py-1 align-items-center">
+                            <span class="avatar me-2" style="background-image: url(@team.Icon)"></span>
+                            <div>
+                                <div class="font-weight-medium fw-bold">@team.Name</div>
+                                <div class="text-secondary">@team.Description</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-end">
+                        <div class="divide-x-2">
+                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Update">
+                                <i class="ti ti-http-put fs-icon text-muted"></i>
+                            </a>
+                            <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Delete">
+                                <i class="ti ti-http-delete fs-icon text-danger"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
     </div>
-    }
 </div>

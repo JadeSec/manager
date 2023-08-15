@@ -58,7 +58,6 @@
     border-color: var(--tblr-muted-lt) !important;
 }
 
-
 #filter .options {
     display: inline-flex;   
     margin-left: 2.5rem;
@@ -79,6 +78,37 @@
     #filter .options div:hover {        
         font-weight: bold;        
     }
+
+.fs-icon {
+    font-size: 1.4rem !important;   
+}
+
+
+a:hover {
+    text-decoration: unset !important;
+}
+
+
+table .avatar {
+    --tblr-avatar-size: 3.5rem !important;
+}
+
+table .font-weight-medium {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+table .text-secondary {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-height: 1.2; /* fallback */
+    margin-top: 2.5px;
+}
+
 
 /* Apenas em telas menores que a de um smartphone*/
 @media screen and (max-width: 768px) {

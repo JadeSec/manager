@@ -8,18 +8,28 @@
             <div class="col">
                 <h2 class="page-title">
                     Teams
-                </h2>                
+                </h2>
                 <small class="pt-1">Showing @Model.StartIndex to @Model.EndIndex of @Model.Total entries</small>
-            </div>            
+            </div>
+            <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                    <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-team-update">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg>
+                        Create a new team
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 <div class="container-xl">
     <div class="row g-4">
         <div class="col-12">
             <form asp-controller="Team" asp-action="Index" method="get">
                 <partial name="_FilterPartial" model="Model" />
-            </form>            
+            </form>
         </div>
         <div class="col-md-12">
             <partial name="_TeamPartial" model="Model" />
@@ -33,3 +43,19 @@
         </div>
     </div>
 </div>
+
+<partial name="_TeamModalPartial" />
+
+
+@section Scripts{
+
+    <script>
+        (function () {
+            new Vue({
+                el: '#team',
+
+            });
+        })();
+
+    </script>
+}
