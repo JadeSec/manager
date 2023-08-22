@@ -6,29 +6,30 @@ using App.Infra.CrossCutting.Helpers;
 using System.ComponentModel.DataAnnotations;
 using App.Infra.CrossCutting.Validators;
 
-namespace App.Application.Project.Models
+namespace App.Mvc.Models
 {
-    public class TeamPayload
+    public class TeamFormModel
     {
-        [MinLength(1)]
+        [Required]
         [MaxLength(50)]
         public string Name { get; set; }
-        
-        [Image(width: 100, height: 100, new string[] { "image/jpeg" })]
+
+        [Required]
+        [Image(width: 100, height: 100, new string[] { "jpeg", "jpg" })]
         public IFormFile Icon { get; set; }
 
-        [MinLength(20)]
+        [Required]        
         [MaxLength(255)]
         public string Description { get; set; }                     
 
-        public static async Task<ProjectTeamEntity> ToEntityAsync(TeamPayload payload)
+        public async Task<ProjectTeamEntity> ToEntityAsync()
         {
             return new ProjectTeamEntity()
             {
-                Name = payload.Name,               
-                Description = payload.Description,
-                Icon = await FormFileHelper.ConvertToBase64Async(payload.Icon),
-                Created = DateTime.Now
+                Name = Name,
+                Created = DateTime.Now,
+                Description = Description,
+                Icon = await FormFileHelper.ConvertToBase64Async(Icon)
             };
         }
     }

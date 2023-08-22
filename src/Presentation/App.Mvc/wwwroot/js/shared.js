@@ -12,7 +12,7 @@
     var pathname = window.location.pathname;
 
     // Get all menu items
-    var navItems = document.querySelectorAll('.nav-item');   
+    var navItems = document.querySelectorAll('.nav-item, .dropdown-item');
 
     // Iterate through each menu item
     for (var i = 0; i < navItems.length; i++) {

@@ -20,6 +20,9 @@ namespace App.Repositories
             _logger = logger;
         }
 
+        public async Task<bool> CreateAsync(ProjectTeamEntity entity)
+          => await base.CreateAndSaveAsync(entity);
+
         public async Task<Paginate<ProjectTeamEntity>> GetAsync(Filter filter)
         {
             var entity = Context.Set<ProjectTeamEntity>();

@@ -16,7 +16,8 @@ namespace App.Infra.CrossCutting.Helpers
             {
                 await formFile.CopyToAsync(memoryStream);
                 var bytes = memoryStream.ToArray();
-                return Convert.ToBase64String(bytes);
+
+                return $"data:{formFile.ContentType};base64," + Convert.ToBase64String(bytes);
             }
         }
     }

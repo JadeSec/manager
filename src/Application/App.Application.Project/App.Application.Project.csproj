@@ -10,4 +10,8 @@
     <ProjectReference Include="..\..\Repositories\App.Repositories\App.Repositories.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

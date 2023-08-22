@@ -1,0 +1,49 @@
+﻿@using App.Mvc.Models
+@model TeamFormModel
+
+<div class="page-header d-print-none mb-5">
+    <div class="container-xl">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <h2 class="page-title">
+                    Create Team
+                </h2>
+            </div>            
+        </div>
+    </div>
+</div>
+
+<div class="container-xl">
+    <div class="row row-cards">
+        <div class="col-md-12">
+            <form asp-controller="Team" asp-action="Create" method="post" class="card" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label required" asp-for="Name">Name</label>
+                        <div>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label required" asp-for="Icon">Icon</label>
+                        <div>
+                            <input asp-for="Icon" type="file" class="form-control" />
+                            <span asp-validation-for="Icon" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Description">Description</label>
+                        <div>
+                            <textarea asp-for="Description" class="form-control"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-end">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

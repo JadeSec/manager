@@ -55,7 +55,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infra.Implementation.Fi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Application.Project", "src\Application\App.Application.Project\App.Application.Project.csproj", "{860C8929-E5AB-465A-9445-C3F7FB68DD5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Application.Rbac", "src\Application\App.Application.Rbac\App.Application.Rbac.csproj", "{F2E6E0F3-F199-45E4-8411-BB676CAE4BC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Application.Rbac", "src\Application\App.Application.Rbac\App.Application.Rbac.csproj", "{F2E6E0F3-F199-45E4-8411-BB676CAE4BC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

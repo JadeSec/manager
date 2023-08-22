@@ -9,13 +9,14 @@ namespace App.Infra.CrossCutting.Validators
 {
     public class ImageAttribute: ValidationAttribute
     {
-
         public int Width { get; set; }
+
         public int Height { get; set; }
+
         public string[] Allowed { get; set; }
 
         private readonly string[] MIME_TYPES = new[] {
-            "image/gif",
+            "image/gif",            
             "image/jpeg",
             "image/png", 
             "image/svg+xml",
@@ -57,14 +58,13 @@ namespace App.Infra.CrossCutting.Validators
 
                             if(Width != default || Height != default)
                                 if (image.Width != Width && image.Height != Height)
-                                    throw new ValidationException($"Image size invalid, try again with size {Width}x{Height}");
+                                    throw new ValidationException($"Image size invalid, try again with size {Width}x{Height}.");
 
                             if (!MIME_TYPES.Any(x => x == format.DefaultMimeType))
                                 throw new ValidationException("Image mime type invalid.");
 
                             if (!IsValidFormat(file) || !Allowed.Any(x => x.ToLower() == format.Name.ToLower()))
-                                throw new ValidationException($"Image format invalid, try again with formats [{string.Join(",", Allowed)}]");
-
+                                throw new ValidationException($"Image format invalid, try again with formats [{string.Join(",", Allowed)}].");
                         }
                     }                   
                 }

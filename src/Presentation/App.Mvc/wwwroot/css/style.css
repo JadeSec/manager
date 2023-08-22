@@ -109,6 +109,9 @@ table .text-secondary {
     margin-top: 2.5px;
 }
 
+.dropdown-item.active{
+    font-weight: bold !important;
+}
 
 /* Apenas em telas menores que a de um smartphone*/
 @media screen and (max-width: 768px) {
