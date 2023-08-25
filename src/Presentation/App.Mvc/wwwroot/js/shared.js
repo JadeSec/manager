@@ -82,3 +82,27 @@
         });
     });
 })();
+
+//This function is responsible for updating the character count as you type, for example: 10/255.
+(function () {
+    var textarea = $('textarea');
+    var description = $('.form-label-description');
+
+    var maxLength = $(textarea).attr("max")
+
+    description.text(textarea.val().length + '/' + maxLength);
+
+    textarea.on('keyup', function () {
+        var currentLength = textarea.val().length;
+
+        description.text(currentLength + '/' + maxLength);
+
+        if (currentLength > maxLength) {
+            description.addClass('text-danger');
+        } else {
+            description.removeClass('text-danger');
+        }
+    });
+})();
+
+

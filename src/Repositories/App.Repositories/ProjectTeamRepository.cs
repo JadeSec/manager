@@ -1,13 +1,12 @@
-﻿using App.Domain.Entities;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using App.Domain.Entities;
 using App.Infra.Implementation.Filter;
 using App.Infra.Implementation.Filter.Extensions;
 using App.Infra.Integration.Database;
 using App.Infra.Integration.Database.Providers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace App.Repositories
 {
@@ -20,8 +19,8 @@ namespace App.Repositories
             _logger = logger;
         }
 
-        public async Task<bool> CreateAsync(ProjectTeamEntity entity)
-          => await base.CreateAndSaveAsync(entity);
+        public async Task<ProjectTeamEntity> GetAsync(int id)
+            => await base.Where(x => x.Id.Equals(id)).FirstOrDefaultAsync();
 
         public async Task<Paginate<ProjectTeamEntity>> GetAsync(Filter filter)
         {

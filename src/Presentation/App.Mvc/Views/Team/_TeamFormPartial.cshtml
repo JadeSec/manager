@@ -1,0 +1,51 @@
+﻿@using App.Mvc.Models
+@model TeamFormModel
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="row g-5">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label required" asp-for="Name">Name</label>
+                    <div>
+                        <input asp-for="Name" class="form-control required" required />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <small class="form-hint">Choose a unique name for the team.</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label required" asp-for="Description">
+                        Description
+                        <span class="form-label-description">0/255</span>
+                    </label>
+                    <div>
+                        <textarea asp-for="Description" rows="5" max="255" class="form-control" required></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Icon">Icon</label>
+                    <div>
+                        <input asp-for="Icon" type="file" class="form-control" accept="image/jpeg, image/jpg" />
+                        <span asp-validation-for="Icon" class="text-danger"></span>
+                        <small class="form-hint">Only images in JPEG or JPG format with a size of 100x100 are accepted.</small>
+                    </div>
+                </div>
+                @if (Model != null && Model.IconData != string.Empty)
+                {
+                    <div class="mb-3 mt-6">
+                        <div class="avatar-center">
+                            <span class="avatar avatar-xl" style="background-image: url('@Model.IconData')"></span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card-footer text-end">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</div>

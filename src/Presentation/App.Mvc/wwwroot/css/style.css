@@ -113,6 +113,16 @@ table .text-secondary {
     font-weight: bold !important;
 }
 
+.avatar-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-footer {
+    background-color: #ffffff !important;
+}
+
 /* Apenas em telas menores que a de um smartphone*/
 @media screen and (max-width: 768px) {
 }

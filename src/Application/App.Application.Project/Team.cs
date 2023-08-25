@@ -17,8 +17,14 @@ namespace App.Application.Project
         }
 
         public async Task<bool> CreateAsync(ProjectTeamEntity entity)
-            => await _projectTeamRep.CreateAsync(entity);
-      
+            => await _projectTeamRep.CreateAndSaveAsync(entity);
+
+        public async Task<bool> UpdateAsync(ProjectTeamEntity entity)
+            => await _projectTeamRep.UpdateAndSaveAsync(entity);
+
+        public async Task<ProjectTeamEntity> GetAsync(int id)
+            => await _projectTeamRep.GetAsync(id);
+
         public async Task<Paginate<ProjectTeamEntity>> GetAsync(string expression, int page)
         {
             var filter = new Filter(expression, page, configuration: new Configuration
@@ -28,7 +34,7 @@ namespace App.Application.Project
                 ExpressionMax = 1,
                 Criteria = new Criteria[]
                 {
-                    new("name", new string[] { "=", "%"}),                 
+                    new("name", new string[] { "=", "%"}),
                 }
             });
 
